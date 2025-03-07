@@ -1,9 +1,13 @@
 import requests
 import time
 import json
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+credential = DefaultAzureCredential()
+token_provider = get_bearer_token_provider(credential, "https://cognitiveservices.azure.com/.default")
 
 # Set up the endpoint and subscription key from Azure
-endpoint = "https://contentservices.services.ai.azure.com/"  # Keep this as your Content Understanding endpoint
+endpoint = "https://contentmodel2.services.ai.azure.com/"  # Keep this as your Content Understanding endpoint
 subscription_key = "DfO8IZa5iAgpOg2MBWILdeK73c2zRJLiObuneHIlaUu9gxoDUisdJQQJ99BCACYeBjFXJ3w3AAAAACOG8ozL"  # Replace with your actual subscription key
 
 analyzer_id="recipe_analyzer"  # The ID of the analyzer to create
@@ -14,7 +18,7 @@ url = endpoint + "contentunderstanding/analyzers/{analyzerId}?api-version=2024-1
 # Example document URL or file data (update with your file or URL)
 headers = {
     'Content-Type': 'application/json',
-    'Ocp-Apim-Subscription-Key': subscription_key
+    'Authorization': f"Bearer {token_provider}"
 }
 
 # Load the request body from a JSON file
