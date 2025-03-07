@@ -1,46 +1,37 @@
 {
-    "description": "Meal Recipe Analyzer",
-    "scenario": "document",
-    "config": {
-      "returnDetails": true
-    },
-    "fieldSchema": {
-      "fields": {
-        "Ingredients": {
-          "type": "array",
-          "method": "extract",
-          "items":{
-            "type": "object",
-            "properties": {
-              "Quantity": {
-                "type": "number",
-                "method": "extract",
-                "description": "Quantity of the ingredient"
-              },
-              "Name": {
-                "type": "number",
-                "method": "extract",
-                "description": "Name of the ingredient"
-              },
-              "Unit": {
-                "type": "string",
-                "method": "extract",
-                "description": "Unit of the ingredient quantity"
-              }
-            }
-          },
-          "description": "List of ingredients"
-        },
-        "Directions": {
-          "type": "array",
-          "method": "extract",
-          "items": {
-            "type": "string",
-            "method": "extract",
-            "description": "Step in the recipe"
+  "description": "Recipe analyzer",
+  "scenario": "document",
+  "fieldSchema": {
+    "fields": {
+      "RecipeName": {
+        "type": "string",
+        "method": "extract",
+        "description": "Name of the recipe"
+      },
+      "Items": {
+        "type": "array",
+        "method": "extract",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Ingredient": {
+              "type": "string",
+              "method": "extract",
+              "description": "Name of the ingredient"
             },
-            "description": "List of directions"
+            "Quantity": {
+              "type": "number",
+              "method": "extract",
+              "description": "Quantity of the ingredient"
+            },
+            "Units": {
+              "type": "string",
+              "method": "extract",
+              "description": "Units of the ingredient quantity"
+            }
           }
         }
+      }
     }
+  }
 }
